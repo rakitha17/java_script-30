@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Noto+Color+Emoji&display=swap');
+
+html {
+  font-family: 'Handlee', cursive;
+  font-size: 15px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+  background-color: #3B5998;
+}
+
+/* NOTE - background of dropdown */
+.dropdown-background {
+  background-color: #0F7DC2;
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, .8);
+
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transition: all .5s;
+}
+.dropdown-background.apear {
+  opacity: 1;
+}
+
+/* .dropdown-background::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -12.5px;
+  border-width: 12.5px;
+  border-style: solid;
+  border-color: transparent transparent #fff transparent;
+} */
+#arrow {
+  width: 15px;
+  height: 15px;
+  background-color: #0F7DC2;
+  display: block;
+  /* box-shadow: -2px -2px 5px rgba(255, 255, 255, .8); */
+
+  position: absolute;
+  left: 50%;
+  top: -7.5px;
+  translate: -50% 0; /* or transform: translate(-50%, 0) rotate(45deg); */
+  rotate: 45deg;
+}
+
+/* NOTE - navigation */
+.navigation {
+  margin-top: 100px;
+  width: 100%;
+}
+
+.row {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+.row > li {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.row li .menu {
+  color: #fff;
+  font-size: 25px;
+  letter-spacing: .5px;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 2px solid #fff;
+  background-color: #0F7DC2;
+  margin: 20px; /* so whitle this margin and 'dropdown' top measurement when events occurs */ 
+}
+
+.dropdown {
+  position: absolute;
+  padding: 20px;
+  color: #fff;
+  overflow: hidden;
+  border-radius: 10px;
+  transform: translateY(100px);
+  letter-spacing: .5px;
+  top: -10px;/* so whitle this top and 'menu' margin measurement when events occurs */
+
+  display: none;
+  opacity: 0;
+  will-change: opacity;
+  transition: all .5s;
+}
+.trigger-event .dropdown {    /* two animations ocuur in here cuz used two properties display and opacity - both together do not transitioned well */
+  display: block;
+}
+.trigger-event-active .dropdown {
+  opacity: 1;
+}
+
+.dropdown a {
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/* NOTE - dropdown 1 */
+.dropdown1 #image {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #fff;
+  border-radius: 100%;
+  margin: 20px auto;
+}
+.dropdown1 #bio {
+  min-width: 300px;
+  text-align: center;
+  font-family: cursive;
+  border-top: 1px solid #8B9DC3;
+  padding-top: 20px;
+}
+
+/* NOTE - dropdown 2 */
+.dropdown2 ul li, .dropdown3 ul li {
+  padding: 10px 0;
+  display: block;
+}
+.dropdown2 ul li {
+  border-bottom: 1px solid #8B9DC3;
+}
+.dropdown2 ul li:last-child {
+  border-bottom: none;
+}
+
+/* NOTE - dropdown 3 */
+.dropdown3 ul li {
+  border-bottom: 1px solid #8B9DC3;
+  text-align: center;
+}
+.dropdown3 ul li:last-child {
+  border-bottom: none;
+}
+.dropdown3 ul li > a {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 5px;
+  font-weight: bold;
+}
+.dropdown3 a[href="#instagram"] {background-color: #EA4335;}
+.dropdown3 a[href="#twitter"] {background-color: #55ACEE;}
+.dropdown3 a[href="#linkedin"] {background-color: #34A853;}
+.dropdown3 a[href="#github"] {background-color: #FF9900;}

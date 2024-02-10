@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>follow along with dropdown menu</title>
+
+  <!-- //LINK - stylesheet link -->
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <!-- //NOTE - div for dropodown background -->
+  <div class="dropdown-background">
+    <span id="arrow"></span>
+  </div>
+  <!-- //SECTION - html content -->
+  <nav class="navigation">
+    <ul class="row">
+      <li>
+        <a class="menu" href="#">About Me</a>
+        <div class="dropdown dropdown1">
+          <div id="image"></div>
+          <div id="bio">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod, error ab distinctio amet mollitia voluptates itaque ex eius, vitae est impedit quia consequuntur officia quas magni nulla, assumenda quos repudiandae.</p>
+          </div>
+        </div>
+      </li>
+      <li>
+        <a class="menu" href="#">Projects</a>
+        <div class="dropdown dropdown2">
+          <ul>
+            <li><a href="#">project 1</a></li>
+            <li><a href="#">project 2</a></li>
+            <li><a href="#">project 3</a></li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <a class="menu" href="#">Contact Me</a>
+        <div class="dropdown dropdown3">
+          <ul>
+            <li><a href="#instagram">Instagram</a></li>
+            <li><a href="#twitter">Twitter</a></li>
+            <li><a href="#linkedin">LinkedIn</a></li>
+            <li><a href="#github">GitHub</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <!-- //SECTION - scripting -->
+  <script>
+    const navDropdowns = document.querySelectorAll('.row > li');
+    const backgroundDropdown = document.querySelector('.dropdown-background');
+    const navigation = document.querySelector('.navigation');
+
+    function mouseEnter() {
+      this.classList.add('trigger-event');
+      setTimeout(() => {
+        if(this.classList.contains('trigger-event')) {
+          this.classList.add('trigger-event-active');
+        }
+      }, 150); //or simplify this - setTimeout(() => this.classList.contains('trigger-event') && this.classList.add('trigger-event-active'), 150);
+      backgroundDropdown.classList.add('apear');
+
+      const currentBackground = this.querySelector('.dropdown');
+      const backgroundCoords = currentBackground.getBoundingClientRect();
+      const navigationCoords = navigation.getBoundingClientRect();
+      console.log(backgroundCoords);
+
+      let coords = {
+        width: backgroundCoords.width,
+        height: backgroundCoords.height,
+        left: backgroundCoords.left - navigationCoords.left,
+        top: backgroundCoords.top - navigationCoords.top,
+      }
+
+      backgroundDropdown.style.setProperty('width', `${coords.width}px`);
+      backgroundDropdown.style.setProperty('height', `${coords.height}px`);
+      backgroundDropdown.style.setProperty('transform', `translate(${coords.left}px, ${coords.top}px)`);
+    }
+
+    function mouseLeave() {
+      this.classList.remove('trigger-event', 'trigger-event-active');
+      backgroundDropdown.classList.remove('apear');
+    }
+
+  navDropdowns.forEach(nav => nav.addEventListener('mouseenter', mouseEnter));
+  navDropdowns.forEach(nav => nav.addEventListener('mouseleave', mouseLeave));
+
+  </script>
+</body>
+</html>
