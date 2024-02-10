@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mousemove shadow</title>
+
+  <style>
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .main {
+      width: 750px;
+      height: 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: relative;
+    }
+    h1 {
+      font-size: 100px;
+      text-shadow: 10px 10px 0 rgba(0, 0, 0, .5);
+
+      position: absolute;
+    }
+  </style>
+
+</head>
+<body>
+  
+  <div class="main">
+    <h1>WOAH !</h1>
+  </div>
+
+  <script>
+
+    const main = document.querySelector(".main");
+    const h1 = main.querySelector("h1");
+
+    function shadowEffectFunction(e) {
+
+      const mainWidth = main.offsetWidth;
+      const mainHeight = main.offsetHeight;
+      const walk = 200;
+
+      let x = e.offsetX;
+      let y = e.offsetY;
+      // console.log(x, y);
+
+      if(this !== e.target) {
+        x = x + e.target.offsetLeft;
+        y = y + e.target.offsetTop;
+      }
+      // console.log(x, y);
+
+
+      const xWalk = Math.round((x / mainWidth * walk) - (walk / 2));
+      const yWalk = Math.round((y / mainHeight * walk) - (walk / 2));
+
+      // console.log(this);
+      // console.log(e);
+      // console.log(e.offsetX);
+      // console.log(e.offsetY);
+
+      h1.style.textShadow = `
+        ${xWalk}px ${yWalk}px 0 rgba(255,0,255,0.7),
+        ${xWalk * -1}px ${yWalk}px 0 rgba(0,255,255,0.7),
+        ${yWalk}px ${xWalk * -1}px 0 rgba(0,255,0,0.7),
+        ${yWalk * -1}px ${xWalk}px 0 rgba(0,0,255,0.7)
+      `
+    }
+
+    main.addEventListener('mousemove', shadowEffectFunction);
+
+  </script>
+
+</body>
+</html>
