@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>drum_kit</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="boxes">
+    <div class="box" data-key="65">
+      <kbd>A</kbd>
+      <span class="sound">clap</span>
+    </div>
+    <div class="box" data-key="83">
+      <kbd>S</kbd>
+      <span class="sound">hihat</span>
+    </div>
+    <div class="box" data-key="68">
+      <kbd>D</kbd>
+      <span class="sound">kick</span>
+    </div>
+    <div class="box" data-key="70">
+      <kbd>F</kbd>
+      <span class="sound">openhat</span>
+    </div>
+    <div class="box" data-key="71">
+      <kbd>G</kbd>
+      <span class="sound">boom</span>
+    </div>
+    <div class="box" data-key="72">
+      <kbd>H</kbd>
+      <span class="sound">ride</span>
+    </div>
+    <div class="box" data-key="74">
+      <kbd>J</kbd>
+      <span class="sound">snare</span>
+    </div>
+    <div class="box" data-key="75">
+      <kbd>K</kbd>
+      <span class="sound">tom</span>
+    </div>
+    <div class="box" data-key="76">
+      <kbd>L</kbd>
+      <span class="sound">tink</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="./sounds/clap.wav"></audio>
+  <audio data-key="83" src="./sounds/hihat.wav"></audio>
+  <audio data-key="68" src="./sounds/kick.wav"></audio>
+  <audio data-key="70" src="./sounds/openhat.wav"></audio>
+  <audio data-key="71" src="./sounds/boom.wav"></audio>
+  <audio data-key="72" src="./sounds/ride.wav"></audio>
+  <audio data-key="74" src="./sounds/snare.wav"></audio>
+  <audio data-key="75" src="./sounds/tom.wav"></audio>
+  <audio data-key="76" src="./sounds/tink.wav"></audio>
+
+  <script>
+    function active_status(e) {
+      let audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      let box = document.querySelector(`.box[data-key="${e.keyCode}"]`);
+
+      if(!audio) return;
+
+      audio.currentTime = 0;
+      audio.play();
+      box.classList.add("playing");
+    }
+
+    function removeTransitonEffect(e) {
+      // console.log(e);
+      if(e.propertyName !== "transform") return;
+      e.target.classList.remove("playing");
+    }
+
+    let boxes = Array.from(document.querySelectorAll(".box"));
+    boxes.forEach(box => box.addEventListener("transitionend", removeTransitonEffect))
+
+    window.addEventListener("keydown", active_status)
+  </script>
+</body>
+</html>
