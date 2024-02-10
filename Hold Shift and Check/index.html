@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Using shift key</title>
+
+  <style>
+    *, ::after, ::before {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: sans-serif;
+    }
+
+    body {
+      background-color: #ffc600;
+    }
+
+    .inbox {
+      width: 400px;
+      margin: 50px auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #f1f1f1;
+    }
+    .item:last-child {
+      border-bottom: none;
+    }
+
+    .item input[type = "checkbox"] {
+      margin: 20px;
+    }
+    input:checked + p {
+      background-color: #f9f9f9;
+    }
+
+    .item p {
+      margin: 0;
+      padding: 20px;
+      border-left: 1px solid #f1f1f1;
+      font-family: 'helvetica neue';
+      font-size: 20px;
+      font-weight: 200;
+      flex-grow: 1;
+      transition: background .5s;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="inbox">
+    <div class="item">
+      <input type="checkbox">
+      <p>HTML</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>CSS</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>JavaScript</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Bootstrap</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Sass</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Tailwind</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Angular</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>React</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>jQuery</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>VueJs</p>
+    </div>
+  </div>
+
+  <script>
+    const checkboxes = document.querySelectorAll(".item input[type='checkbox']");
+
+    let lastChecked;
+
+    function checkHandler(e) {
+
+      if(e.shiftKey && this.checked) {
+        // console.log("pressed shiftkey and selects");
+
+        let inBetween = false
+
+        checkboxes.forEach(checkbox => {
+
+          console.log(checkbox);
+
+          if(checkbox === this || checkbox === lastChecked) {
+            inBetween = !inBetween;
+            console.log("ckecked");
+          }
+          
+          if(inBetween) {
+            checkbox.checked = true;
+          }
+
+        })
+      }
+      lastChecked = this;
+    }
+
+    checkboxes.forEach(checkbox => checkbox.addEventListener("click", checkHandler)); 
+  </script>
+</body>
+</html>
