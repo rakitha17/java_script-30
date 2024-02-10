@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>click and drag</title>
+
+  <!-- //LINK - stylesheet link -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container snap-inline">
+    <div class="item"><img src="./assets/agriculture-1807581_1280.jpg" alt=""></div>
+    <div class="item"><img src="./assets/avenue-2215317_1280.jpg" alt=""></div>
+    <div class="item"><img src="./assets/family-2485714_1920.jpg" alt=""></div>
+    <div class="item"><img src="./assets/fisherman-504098_1920.jpg" alt=""></div>
+    <div class="item"><img src="./assets/horses-5716127_1920.jpg" alt=""></div>
+    <div class="item"><img src="./assets/road-220058_1280.jpg" alt=""></div>
+    <div class="item"><img src="./assets/sea-164989_1280.jpg" alt=""></div>
+    <div class="item"><img src="./assets/sunset-1373171_1920.jpg" alt=""></div>
+    <div class="item"><img src="./assets/tree-2175353_1920.jpg" alt=""></div>
+    <div class="item"><img src="./assets/wheat-2391348_1920.jpg" alt=""></div>
+  </div>
+  <!-- //SECTION - scripting -->
+  <script>
+    const scroller = document.querySelector('.container');
+
+    let mouseDown = false;
+    let initialXposition;
+    let scrollLeft;
+
+    scroller.addEventListener('mousedown', (e) => {
+      mouseDown = true;
+      scroller.classList.add('active');
+      initialXposition = e.pageX - scroller.offsetLeft;
+      scrollLeft = scroller.scrollLeft;
+    });
+    scroller.addEventListener('mouseup', () => {
+      mouseDown = false;
+      scroller.classList.remove('active');
+    });
+    scroller.addEventListener('mouseleave', () => {
+      mouseDown = false;
+      scroller.classList.remove('active');
+    });
+    scroller.addEventListener('mousemove', (e) => {
+      if(!mouseDown) return; //stop the function if mouse down is up
+      e.preventDefault();
+      const newXposition = e.pageX - scroller.offsetLeft;
+      console.log({initialXposition, newXposition});
+      const walk = newXposition - initialXposition;
+      console.log(walk);
+      scroller.scrollLeft = scrollLeft - walk; //subtracting initial calculated scrollLeft value because of that value is calculating every time when we scrolled.
+    });
+  </script>
+</body>
+</html>
