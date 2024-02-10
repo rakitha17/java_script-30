@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>AJAX type ahead</title>
+</head>
+<body>
+  <form class="search-form">
+    <input type="search" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for Cities</li>
+      <li>Filter for City Code</li>
+    </ul>
+  </form>
+
+  <script>
+    const points = "https://raw.githubusercontent.com/apsaraaruna/srilanka-cities-json/master/cities-and-postalcode-by-district-min.json"
+
+    let cities = [];
+    fetch(points)
+      .then(blob => blob.json())
+      .then(data => {
+        for(let city in data) {
+          let eachArray = data[city];
+          for(let i=0; i<eachArray.length; i++) {
+            cities.push(eachArray[i]);
+          }
+        }
+      });
+
+    function findCity(typeStr, cities) {
+      return cities.filter(place => {
+
+        const regex = new RegExp(typeStr, 'gi');
+        return place.city.match(regex);
+      })
+    }
+
+    function displayCity() {
+      let matchArray = findCity(this.value, cities);
+      let place = matchArray.map(place => {
+        const regex = new RegExp(this.value, "gi");
+        const hlPlace = place.city.replace(regex, `<span class="highlight">${this.value}</span>`);
+
+        return `
+        <li>
+          <span class="city">${hlPlace}</span>
+          <span class="postal-code">${place.code}</span>
+        </li>
+        `;
+      }).join("");
+
+      suggestions.innerHTML = place;
+    }
+
+    const searchInput = document.querySelector(".search");
+    const suggestions = document.querySelector(".suggestions");
+
+    searchInput.addEventListener("change", displayCity);
+    searchInput.addEventListener("keyup", displayCity);
+
+    window.onload = searchInput.value = "";
+  </script>
+</body>
+</html>
+
+
+
