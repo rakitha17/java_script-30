@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>speech recognition</title>
+    <!-- //SECTION - styling -->
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #ffd700;
+        height: 100vh;
+        font-family: 'helvetica neue';
+        font-size: 15px;
+        text-align: center;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .text {
+        width: 550px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: left;
+      }
+      .text p {
+        padding: 20px;
+        border-bottom: 1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- //SECTION - content -->
+    <div class="main">
+      <h1 style="color: #fff; margin-bottom: 20px; text-shadow: 0 0 4px #000; letter-spacing: 1px;">Say Something!</h1>
+      <div class="text"></div>
+    </div>
+
+    <!-- //SECTION - scripting -->
+    <script>
+      const text = document.querySelector('.text');
+
+      //ANCHOR - doesn't support on firefox
+      window.SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      const recognition = new SpeechRecognition();
+      //NOTE - or instead of "window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;" <- we could use 'const recognition = new webkitSpeechRocognition()'
+      recognition.iterimResults = true;
+
+      recognition.addEventListener('result', (e) => {
+        const transcript = Array.from(e.results)
+          .map(result => result[0].transcript);
+
+          const para = document.createElement('p');
+          para.textContent = transcript;
+
+        if(e.results[0].isFinal) {
+          text.appendChild(para);
+        }
+      })
+
+      recognition.addEventListener('end', recognition.start);
+      recognition.start();
+    </script>
+  </body>
+</html>
