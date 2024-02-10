@@ -1,0 +1,99 @@
+html {
+  font-family: monospace;
+  font-weight: 400;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  height: 50vh;
+  text-align: center;
+  display: flex;
+
+  background-image: url('./sea-7629517_1920.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.header h1 {
+  margin: auto;
+  font-size: 50px;
+  font-variant: small-caps;
+  font-variant: small-caps;
+  text-transform: capitalize;
+  text-shadow: 2px 2px rgba(0, 0, 0, .3);
+}
+
+.navigation {
+  display: block;
+  width: 100%;
+  background-color: #000;
+
+  position: relative;
+  z-index: 1;
+  transition: all .5s;
+}
+/* //NOTE - js styling */
+body.fixed-nav .navigation{
+  position: fixed;
+  top: 0;
+  box-shadow: 0 5px 0 rgba(0, 0, 0, .1);
+}
+
+.navigation ul {
+  display: flex;
+}
+
+.navigation ul li {
+  list-style-type: none;
+  font-size: 20px;
+  flex: 1;
+  text-align: center;
+}
+
+.navigation ul li.logo {
+  background-color: #fff;
+
+  max-width: 0;
+  transition: all .5s;
+}
+/* //NOTE - js styling */
+body.fixed-nav li.logo {
+  max-width: 500px;
+}
+
+.logo a{
+  color: #000 !important;
+  font-weight: bolder;
+}
+
+.navigation ul li a {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  display: inline-block;
+}
+
+.site-wrap {
+  max-width: 700px;
+  padding: 40px;
+  margin: 70px auto;
+  background-color: #fff;
+  font-size: 18px;
+  font-weight: 100;
+  text-wrap: wrap;
+  text-align: justify;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, .3);
+  transform: scale(0.98);
+
+  transition: transform .5s;
+}
+/* //NOTE - js styling */
+body.fixed-nav .site-wrap {
+  transform: scale(1);
+}
