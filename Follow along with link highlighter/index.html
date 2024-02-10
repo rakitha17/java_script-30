@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>follow the link</title>
+  </head>
+
+  <!-- //SECTION - styling -->
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    html {
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+      font-size: 15px;
+      color: black;
+    }
+
+    body {
+      background-color: #ffdd1a;
+      overflow-x: hidden;
+      overflow-y: scroll;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 600px;
+      background-color: #fff;
+      margin: 100px 0;
+      z-index: 2;
+    }
+
+    .navigation {
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .navigation ul {
+      display: flex;
+      justify-content: space-between;
+      list-style-type: none;
+    }
+
+    .navigation ul li {
+      margin-right: 5px;
+      display: inline;
+    }
+    .navigation ul li:last-child {
+      margin-right: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: purple;
+      font-weight: 500;
+    }
+
+    .wrapper {
+      margin: 0 auto;
+      max-width: 500px;
+      font-size: 20px;
+      line-height: 2;
+      position: relative;
+    }
+
+    /* js item styling */
+    .highlighter {
+      background-color: rgba(0, 0, 0, 0.5);
+      transition: all .2s;
+      z-index: 4;
+      border-radius: 25px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
+
+  <body>
+    <!-- //SECTION - content -->
+    <div class="container">
+      <div class="navigation">
+        <ul>
+          <li><a href="#link">Link 1</a></li>
+          <li><a href="#link">Link 2 Link 2</a></li>
+          <li>
+            <a href="#link">Link 3 Link<br />3 Link 3</a>
+          </li>
+          <li>
+            <a href="#link">Link 4 Link 4 Link 4 Link 4<br />Link4</a>
+          </li>
+          <li><a href="#link">Link 55555555555555555</a></li>
+        </ul>
+      </div>
+      <div class="wrapper">
+        <p>
+          Lorem ipsum dolor sit amet, <a href="">consectetur</a> adipisicing
+          elit. Est <a href="">explicabo</a> unde natus necessitatibus esse
+          obcaecati distinctio, aut itaque, qui vitae!
+        </p>
+        <p>
+          Aspernatur sapiente quae sint <a href="">soluta</a> modi, atque
+          praesentium laborum pariatur earum <a href="">quaerat</a> cupiditate
+          consequuntur facilis ullam dignissimos, aperiam quam veniam.
+        </p>
+        <p>
+          Cum ipsam quod, incidunt sit ex <a href="">tempore</a> placeat maxime
+          <a href="">corrupti</a> possimus <a href="">veritatis</a> ipsum fugit
+          recusandae est doloremque? Hic, <a href="">quibusdam</a>, nulla.
+        </p>
+        <p>
+          Esse quibusdam, ad, ducimus cupiditate <a href="">nulla</a>, quae
+          magni odit <a href="">totam</a> ut consequatur eveniet sunt quam
+          provident sapiente dicta neque quod.
+        </p>
+        <p>
+          Aliquam <a href="">dicta</a> sequi culpa fugiat
+          <a href="">consequuntur</a> pariatur optio ad minima, maxime
+          <a href="">odio</a>, distinctio magni impedit tempore enim repellendus
+          <a href="">repudiandae</a> quas!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, <a href="">consectetur</a> adipisicing
+          elit. Est <a href="">explicabo</a> unde natus necessitatibus esse
+          obcaecati distinctio, aut itaque, qui vitae!
+        </p>
+        <p>
+          Aspernatur sapiente quae sint <a href="">soluta</a> modi, atque
+          praesentium laborum pariatur earum <a href="">quaerat</a> cupiditate
+          consequuntur facilis ullam dignissimos, aperiam quam veniam.
+        </p>
+        <p>
+          Cum ipsam quod, incidunt sit ex <a href="">tempore</a> placeat maxime
+          <a href="">corrupti</a> possimus <a href="">veritatis</a> ipsum fugit
+          recusandae est doloremque? Hic, <a href="">quibusdam</a>, nulla.
+        </p>
+        <p>
+          Esse quibusdam, ad, ducimus cupiditate <a href="">nulla</a>, quae
+          magni odit <a href="">totam</a> ut consequatur eveniet sunt quam
+          provident sapiente dicta neque quod.
+        </p>
+        <p>
+          Aliquam <a href="">dicta</a> sequi culpa fugiat
+          <a href="">consequuntur</a> pariatur optio ad minima, maxime
+          <a href="">odio</a>, distinctio magni impedit tempore enim repellendus
+          <a href="">repudiandae</a> quas!
+        </p>
+      </div>
+    </div>
+
+    <!-- //SECTION - scripting -->
+    <script>
+
+      // const container = document.querySelector('.container');
+
+      //highlighter create
+      const highlighter = document.createElement('span');
+      highlighter.classList.add('highlighter');
+      document.body.appendChild(highlighter);
+
+      const triggerItems = document.querySelectorAll('a');
+
+      function openHighlighting() {
+        const linkcords = this.getBoundingClientRect();
+
+        const coords = {
+          width: linkcords.width,
+          height: linkcords.height,
+          left: linkcords.left + window.scrollX,    //change in scrolling
+          top: linkcords.top + window.scrollY      //change in scrolling
+        }
+        highlighter.style.width = `${coords.width}px`;
+        highlighter.style.height = `${coords.height}px`;
+        highlighter.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+      }
+
+      triggerItems.forEach(a => {
+        a.addEventListener('mouseenter', openHighlighting);
+      })
+
+    </script>
+  </body>
+</html>
