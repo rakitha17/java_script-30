@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>key sequence detection</title>
+
+  <!-- cdn link -->
+  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+</head>
+<body>
+  
+  <script>
+    const fixedWord = "ritzy";
+    const pressedArray = [];
+
+    window.addEventListener('keyup', (e) => {
+      console.log(e.key);
+      pressedArray.push(e.key);
+
+      pressedArray.splice(-(pressedArray.length - 1), pressedArray.length - fixedWord.length);
+      console.log(pressedArray);
+      
+      if(pressedArray.join('').includes(fixedWord)) {
+        console.log(' Ding Ding');
+        cornify_add();
+      }
+    })
+
+  </script>
+
+</body>
+</html>
