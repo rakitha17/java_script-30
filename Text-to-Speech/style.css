@@ -1,0 +1,143 @@
+:root {
+  --font-custom: 'Pacifico', cursive;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-family: 	sans-serif;
+  font-size: 20px;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #ffc61a;
+  overflow-y: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  background-color: #fff;
+  width: 900px;
+  padding: 10px;
+  border-radius: 20px;
+}
+/* //SECTION - options */
+.options {
+  padding-bottom: 10px;
+
+  display: flex;
+}
+
+.inputs #selectVoice {
+  display: block;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+
+  appearance: none;
+  background-image: url('angle-down-solid.svg');
+  background-repeat: no-repeat;
+  background-size: 12px;
+  background-position: right center;
+  background-origin: content-box;
+}
+#selectVoice:focus {
+  outline: none;
+}
+#selectVoice option {
+  background-color: #fff;
+  font-family: var(--font-custom);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.inputs .controls {
+  display: grid;
+  grid-template-columns: 10% 35% 10% 35%;
+  column-gap: 3.33%;
+
+  font-family: var(--font-custom);
+  font-size: 15px;
+  font-weight: bold;
+}
+.controls label[for='rate']{grid-column-start: 1; grid-column-end: 2;}
+.controls input[name='rate']{grid-column-start: 2; grid-column-end: 3;}
+.controls label[for='pitch']{grid-column-start: 3; grid-column-end: 4;}
+.controls input[name='pitch']{grid-column-start: 4; grid-column-end: 5;}
+
+.controls input {
+  accent-color: #feb236;  
+  cursor: pointer;
+}
+
+.buttons, .mic {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn {
+  border: none;
+  border-radius: 100%;
+  font-family: var(--font-custom);
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+.mic #microphone {
+  border: none;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 20px;
+  text-align: center;
+  background-color: #82b74b;
+}
+.btn:active, #microphone:active {
+  transform: scale(.8);
+}
+/* NOTE - adding animation */
+#microphone.animation {
+  animation-name: microphone-animation;
+  animation-duration: .5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes microphone-animation {
+  from {background-color: #82b74b; transform: scale(1);}
+  to {background-color: #d64161; transform: scale(1.5);}
+}
+
+/* //SECTION - textarea */
+#typeText {
+  width: 100%;
+  resize: none;
+  border: none;
+  overflow-x: auto;
+  font-size: 18px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  padding: 10px;
+
+  transition: box-shadow .2s ease;
+}
+#typeText:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .5);
+}
