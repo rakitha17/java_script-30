@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>geolocation</title>
+
+  <!-- font link -->
+  <!-- <link href="https://fonts.cdnfonts.com/css/helvetica-neue-5" rel="stylesheet"> -->
+                
+  <!-- //SECTION - styling -->
+  <style>
+
+    @import url('https://fonts.cdnfonts.com/css/helvetica-neue-5?styles=103506');
+
+    html {
+      font-family: 'Helvetica Neue', sans-serif;                                        
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background-image: url('./wall-4756783_1920.jpg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .main {
+      width: 350px;
+    }
+
+    #compass {
+      width: 100%;
+      border: 5px solid #000;
+      padding: 50px;
+      border-radius: 50%;
+      background-color: #fff;
+      box-shadow: 0 0 0 10px rgba(255, 255, 255,  .35);
+      margin-bottom: 20px;
+    }
+
+    .main #compass img {
+      width: 100%;
+      border: 5px solid #000;
+      border-radius: 50%;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, .35);
+    }
+
+    #speed {
+      text-shadow: 0 0 5px #FFF;
+      text-align: center;
+      font-size: 40px;
+      font-weight: 300;
+    }
+
+    #speed span:first-child {
+      margin-right: 20px;
+    }
+
+  </style>
+
+</head>
+<body>
+  
+  <!-- //SECTION - content -->
+  <div class="main">
+    <div id="compass">
+      <img id="compass-img" src="./compass-160863_1280.png" alt="compass image">
+    </div>
+    <div id="speed"><span>10</span><span>Km/H</span></div>
+  </div>
+
+  <!-- //SECTION - scripting -->
+  <script>
+    
+    const compass = document.querySelector('#compass-img');
+    const speed = document.querySelector('#speed');
+
+    window.navigator.geolocation.watchPosition((data) => {
+      console.log(data);
+      speed.textContent = data.coords.speed;
+      compass.style.transform = `rotate(${data.coords.heading}deg)`;
+    })
+    
+  </script>
+</body>
+</html>
