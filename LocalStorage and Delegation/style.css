@@ -1,0 +1,145 @@
+html {
+  font-family: "helvetica neu";
+  font-size: 20px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background-image: url("coffee-beans-1291656_1920.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  overflow-x: hidden;
+
+  display: flex;
+  justify-content: center;
+}
+
+.main-container {
+  width: 500px;
+}
+
+.logo {
+  width: 350px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.logo img {
+  width: 100%;
+}
+
+.food-container {
+  width: 100%;
+  background-color: rgba(0, 0, 0, .55);
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, .5);
+}
+
+.food-container h1 {
+  color: #fff;
+  font-weight: 500;
+  font-variant: small-caps;
+  letter-spacing: .5px;
+  margin-bottom: 20px;
+}
+
+.food-insert .plates {
+  list-style-type: none;
+  text-align: left;
+}
+
+.plates li {
+  color: #fff;
+  text-shadow: 1px 1px #000;
+  border-bottom: 1px solid #fff;
+  padding: 10px 0;
+  background-color: rgba(255, 255, 255, .04);
+
+  /* TODO */
+  /* display: flex; */
+}
+
+    /* js adding */
+    .plates li input {
+      display: none;
+    }
+
+    .plates li label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .plates li input + label::before {
+      content: '⬜';
+      margin-right: 10px;
+    }
+    .plates li input:checked + label::before {
+      content: '☕';
+    }
+
+.add-items {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-items #add-item {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  flex: 1;
+
+  background-color: rgba(255, 255, 255, .3);
+  cursor: pointer;
+  caret-color: #000;
+
+  transition: all .2s;
+}
+    #add-item:focus {
+      box-shadow: 0 0 3px rgba(255, 255, 255, .8);
+    }
+
+.btn {
+  font-size: 12px;
+  font-weight: bold;
+  align-self: center;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 1px 1px #000;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+
+  width: 120px;
+  background-color: rgba(255, 255, 255, .3);
+
+  transition: all .1s;
+}
+    .btn:active {
+      box-shadow: 0 0 3px rgba(255, 255, 255, .8);
+    }
+
+.submit {
+  margin-left: 20px;
+}
+
+.reset {
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
