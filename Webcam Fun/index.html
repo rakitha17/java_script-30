@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>webcam 🎳</title>
+
+  <!-- fontawesome link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- stylesheet link -->
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  
+  <!-- //SECTION - content -->
+  <div class="main">
+
+    <div class="controls">
+      <div class="red color">
+        <div class="red bar min">
+          <label for="redMin">Lower Red :</label>
+          <input type="range" name="redMin" min="0" max="255">
+        </div>
+        <div class="red bar max">
+          <label for="redMax">Higher Red :</label>
+          <input type="range" name="redMax" min="0" max="255">
+        </div>
+      </div>
+      <div class="green color">
+        <div class="green bar min">
+          <label for="greenMin">Lower Green :</label>
+          <input type="range" name="greenMin" min="0" max="255">
+        </div>
+        <div class="green bar max">
+          <label for="greenMax">Higher Green :</label>
+          <input type="range" name="greenMax" min="0" max="255">
+        </div>
+      </div>
+      <div class="blue color">
+        <div class="blue bar min">
+          <label for="blueMin">Lower Blue :</label>
+          <input type="range" name="blueMin" min="0" max="255">
+        </div>
+        <div class="blue bar max">
+          <label for="blueMax">Higher Blue :</label>
+          <input type="range" name="blueMax" min="0" max="255">
+        </div>
+      </div>
+    </div>
+
+    <div class="image-container">
+      <div class="capture">
+        <video id="player"></video>
+        <button id="clip" onclick="takePhoto()"><i class="fa-solid fa-camera"></i></button>
+      </div>
+      <canvas class="image"></canvas>
+    </div>
+  <!-- //ANCHOR - download the image -->
+    <div class="strip"></div>
+
+  </div>
+
+  <audio src="iphone-camera-capture-6448.mp3" id="sound"></audio>
+
+  <!-- //SECTION - scripting -->
+  <script type="text/javascript" src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+html {
+  font-family: 'helvetica neu';
+  font-size: 20px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #FBBC05;
+  min-height: 100vh;
+  min-width: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  .main {
+    width: 1200px;
+    background-color: #4285F4;
+    padding: 20px;
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, .3);
+  }
+
+    .main .controls {
+      display: flex;
+      justify-content: space-around;
+      color: #fff;
+      font-weight: 500;
+      margin-bottom: 50px;
+    }
+
+      .main .controls .color { 
+        background-color: rgba(0, 0, 0, .35);
+      }
+
+        .bar {
+          padding: 10px;
+          color: #fff;
+
+          display: flex;
+          align-items: center;
+        }
+          .bar.min {
+            border-bottom: 1px solid #ddd;
+          }
+
+          .bar label {
+            flex: 1;
+          }
+          .bar input {
+            align-self: center;
+            flex: 1;
+            margin-left: 10px;
+            background-color: transparent;
+          }
+input::-moz-range-track {
+  background-color: rgba(0, 0, 0, .3);
+  height: 10px;
+}
+input::-moz-range-progress {
+  height: 10px;
+  background-color: #FBBC05;
+}
+input::-moz-range-thumb {
+  background-color: #fff;
+  width: 15px;
+  height: 15px;
+  border: none;
+  border-radius: 100%;
+}
+
+/* SECTION - capture */
+.image-container {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+  .image-container .capture {
+    display: flex;
+
+  }
+
+    #player {
+      width: 250px;
+      height: 150px;
+      box-shadow: 0 0 10px 5px rgba(0, 0, 0, .3);
+      align-self: center;
+    }
+
+    #clip {
+      align-self: center;
+      text-align: center;
+      border: none;
+      border-radius: 100%;
+      padding: 20px;
+      font-size: 20px;
+      color: #000;
+      background-image: linear-gradient(to bottom, #4285F4, #fff);
+      margin-left: 20px;
+      cursor: pointer;
+
+      transition: box-shadow .1s ease-out;
+    }
+    #clip:active{
+      box-shadow: 0 0 10px rgba(0, 0, 0, .75);
+    }
+    #clip:hover {
+      background: linear-gradient(to bottom, #4285F4, #000);
+      color: #fff;
+    }
+
+  .image-container .image {
+    width: 760px;
+    height: 350px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, .3);
+  }
+
+/* SECTION - strip(js) styling */
+.strip {
+  padding: 10px 0;
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
+  border-bottom: 1px solid #ddd;
+}
+
+.strip a {
+  background-color: #fff;
+  width: 100px;
+  height: 75px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+
+  display: inline-block;
+}
+
+.strip img {
+  width: 100%;
+  height: 75px;
+} 
