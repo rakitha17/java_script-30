@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sorting band names</title>
+
+  <!-- //SECTION - styling -->
+  <style>
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    body {
+      height: 100vh;
+      background-image: url("birds-3860034_1920.jpg");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .list {
+      width: 500px;
+      background-color: #fff;
+      text-align: left;
+      padding: 0;
+      box-shadow: 0 0 0 5px rgba(0, 0, 0, .1);
+      list-style-position: inside;
+      list-style-type: '😊';
+    }
+
+    .list li {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+        .list li::before {
+          content: '';
+          margin-left: 10px;
+        }
+        .list li:last-child {
+          border-bottom: none;
+        }
+
+  </style>
+
+</head>
+<body>
+  
+  <!-- //SECTION - content -->
+  <ul class="list"></ul>
+
+  <!-- //SECTION - content -->
+  <script>
+
+    const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans',  'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+
+    function strip(word) {
+      return word.replace(/^(the |an |a )/i, '').trim();
+    }
+
+    // const sortArray = bands.sort((a, b) => (strip(a) > strip(b)) ? 1 : -1);
+
+    const sortArray = bands.sort(function(a, b) {
+      if(strip(a) > strip(b)) {
+        return 1;
+      }else {
+        return -1;
+      }
+    });
+    console.log(sortArray);
+
+    // let word = sortArray.map((sentence) => sentence).join(" ");
+    // console.log(word);
+    
+    const ul = document.querySelector(".list");
+
+    ul.innerHTML = 
+      sortArray
+      .map((sentence) => `<li>${sentence}</li>`)
+      .join(" ");
+
+    // ul.innerHTML = 
+
+  </script>
+</body>
+</html>
