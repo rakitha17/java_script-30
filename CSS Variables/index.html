@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css variables</title>
+</head>
+  <style>
+    :root {
+      --spacing: 10px;
+      --blur: 10px;
+      --base: #ffc600;
+    }
+
+    body {
+      background-color: #193549;
+      color: whitesmoke;
+      text-align: center;
+      font-size: 50px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+    }
+
+    .h1 {
+      color: var(--base);
+    }
+
+    .controls {
+      margin-bottom: 100px;
+    }
+
+    input {
+      width: 100px;
+    }
+    
+    img {
+      width: 1000px;
+      height: auto;
+      background-color: var(--base);
+      padding: var(--spacing);
+      filter: blur(var(--blur));
+    }
+  </style>
+<body>
+  <h1>Update CSS Variables with <span class="h1">JS</span></h1>
+
+  <div class="controls">
+    <label for="spacing">Spacing: </label>
+    <input type="range" id="spacing" name="spacing" min="0" max="200" value="10" data-sizing="px">
+
+    <label for="blur">Blur: </label>
+    <input type="range" id="blur" name="blur" min="0" max="25" value="0" data-sizing="px">
+
+    <label for="base">Base: </label>
+    <input type="color" id="base" name="base" value="#ffc600">
+  </div>
+
+  <img src="./ADKK8697.JPG" alt="nature">
+
+  <script>
+    const inputs = document.querySelectorAll(".controls input");
+
+    function handleChange() {
+      console.log(this.value);
+      let suffix = this.dataset.sizing || "";
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+
+    inputs.forEach((input) => input.addEventListener("change", handleChange));
+    inputs.forEach((input) => input.addEventListener("mousemove", handleChange));
+
+  </script>
+</body>
+</html>
