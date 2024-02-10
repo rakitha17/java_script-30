@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>speed controller - video</title>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #FFD700;
+    }
+    .main {
+      padding: 50px;
+      background-color: rgba(0, 0, 0, .4);
+      border-radius: 25px;
+
+      display: flex;
+    }
+    .speed-controller {
+      width: 50px;
+      background: #efefef;
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      margin: 10px;
+      border-radius: 50px;
+      box-shadow: 0 0 1px 3px rgba(0,0,0,0.1);
+      overflow: hidden;
+      cursor: n-resize;
+    }
+    .rate-fill {
+      width: 100%;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, .1), rgba(255, 0, 0));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 12.5%;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <video class="player" src="./652333414.mp4" width="765px" loop controls></video>
+    <div class="speed-controller">
+      <div class="rate-fill">1x</div>
+    </div>
+  </div>
+  <script>
+    const video = document.querySelector('.player');
+    const controller = document.querySelector('.speed-controller');
+    const rateFill = document.querySelector('.rate-fill');
+
+    function playbackrateFunction(e) {
+      const y = e.pageY - this.offsetTop;
+      const ratio = y / this.offsetHeight;
+      const height = Math.round(ratio * 100) + '%';
+      const minRate = 0.5;
+      const maxRate = 4;
+      rateFill.style.height = height;
+      const playbackRate = ratio * (maxRate - minRate) + minRate; //to create ratio accordingly minRate and maxRate, the differnce is (4 - 0.5 = 3.5), then shoul add minRate as initial.
+      rateFill.textContent = playbackRate.toFixed(2) + 'X';
+      video.playbackRate = playbackRate;
+    }
+
+    controller.addEventListener('mousemove', playbackrateFunction);
+  </script>
+</body>
+</html>
