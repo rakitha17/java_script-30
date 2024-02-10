@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>custom video player</title>
+  
+  <!-- font-awesome link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- stylesheet link -->
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  
+  <div class="player">
+    <video class="player-viewer" src="652333414.mp4"></video> 
+
+    <div class="player-controls">
+      <div class="progress">
+        <div class="progress-filled"></div>
+      </div>
+      <button class="player-toggle btn" title="Toggle Play">
+        <i class="fa-solid fa-play"></i>
+      </button>
+
+      <input class="player-slider" type="range" name="volume" min="0" max="1" step="0.05" value="1">
+      <input class="player-slider" type="range" name="playbackRate" min="0.5" max="2" step="0.1" value="1">
+
+      <button class="player-skip btn" data-skip="-10"><< 10 s</button>
+      <button class="player-skip btn" data-skip="10">10 s >></button>
+      <button class="resize btn"><i class="fa-solid fa-expand"></i></button>
+    </div>
+  </div>
+
+  <!-- js script file -->
+  <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
